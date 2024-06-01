@@ -2,7 +2,7 @@ package com.example.station_level_management_back.service;
 
 import com.example.station_level_management_back.entity.MaterialsEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
-
+import java.util.List;
 /**
  * <p>
  *  服务类
@@ -13,4 +13,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface MaterialsService extends IService<MaterialsEntity> {
 
+    List<MaterialsEntity> getAllMaterialsName();
+
+    MaterialsEntity selectMaterialsByName(String name);
+
+    String  judgementType( MaterialsEntity materialsEntity);
 }

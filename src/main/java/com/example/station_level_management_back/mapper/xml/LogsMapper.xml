@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.station_level_management_back.mapper.LogsMapper">
-
+    <delete id="deleteLogsByMonth" parameterType="int" >
+        DELETE FROM logs WHERE MONTH(creat_date) = #{month}
+    </delete>
+    <delete id="deleteLogsByYearAndMonth" parameterType="map">
+        DELETE FROM logs WHERE YEAR(creat_date) = #{year} AND MONTH(creat_date) = #{month}
+    </delete>
 </mapper>

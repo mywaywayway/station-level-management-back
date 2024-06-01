@@ -4,28 +4,15 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.time.LocalDateTime;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.Accessors;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author  My-way
- * @since 2024-04-17 21:32:21
- */
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
-@Accessors(chain = true)
-@TableName("logs")
-@ApiModel(value = "LogsEntity对象", description = "")
-public class LogsEntity {
-
+@TableName("logs_user_view")
+public class LogsUserViewEntity {
     @TableId(value = "log_id", type = IdType.AUTO)
     private String logId;
 
@@ -33,7 +20,7 @@ public class LogsEntity {
     private String userId;
 
     @TableField("`type`")
-    private Integer type;
+    private String type;
 
     @TableField("operation")
     private String operation;
@@ -41,5 +28,7 @@ public class LogsEntity {
     @TableField("creat_date")
     private LocalDateTime creatDate;
 
+    @TableField("user_name")
+    private String userName;
 
 }

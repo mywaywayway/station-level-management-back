@@ -4,29 +4,18 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.Accessors;
+import lombok.ToString;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author  My-way
- * @since 2024-04-17 21:32:21
- */
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
-@Accessors(chain = true)
-@TableName("context_owner")
-@ApiModel(value = "ContextOwnerEntity对象", description = "")
-public class ContextOwnerEntity {
-
+@TableName("context_owner_user_view")
+public class ContextOwnerUserViewEntity  {
     @TableId(value = "id", type = IdType.AUTO)
     private String id;
 
@@ -48,5 +37,6 @@ public class ContextOwnerEntity {
     @TableField("clock_time2")
     private LocalDateTime clockTime2;
 
-
+    @TableField("user_name")
+    private String userName;
 }

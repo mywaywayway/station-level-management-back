@@ -14,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.UUID;
+
 /**
  * <p>
  *  前端控制器
@@ -50,6 +52,9 @@ public class ContextOwnerController {
             return Result.fail();
         }
     }
+    /*
+     计算工时打卡
+     */
 
     @PostMapping("/updateContextOwnerOffDutyTIme")
     public  Result<?> updateContextOwnerOffDutyTIme(@RequestBody ContextOwnerEntity contextOwnerEntity) {
@@ -61,7 +66,7 @@ public class ContextOwnerController {
 
         int comparisonResult = duration1.compareTo(duration2);
         if (comparisonResult < 0) {
-            System.out.println("duration1 大于 duration2");
+
             return Result.fail("工时未满");
         } else {
             if (contextOwnerServiceImpl.updateById(contextOwnerEntity)){
@@ -72,5 +77,35 @@ public class ContextOwnerController {
             }
         }
     }
+    @PostMapping("/getAllContextOwner")
+    public Result<?> getAllContextOwner(){
+        return Result.success(contextOwnerServiceImpl.getAllContextOwner());
+    }
+    /*
+    *增加排班记录
+     */
+    @PostMapping("/addContextOwner")
+     public Result<?> addContextOwner(@RequestBody ContextOwnerEntity contextOwnerEntity){
+        if (contextOwnerEntity.getUserId()==null){
+            return Result.fail("未选择员工");
+        }
+        UUID uuid=UUID.randomUUID();
+        contextOwnerEntity.setId(uuid.toString());
 
+        if (contextOwnerServiceImpl.save(contextOwnerEntity)){
+            return Result.success();
+        }else {
+            return Result.fail();
+        }
+    }
+
+    @GetMapping("/deleteContextOwnerById/{id}")
+    public  Result<?> deleteContextOwnerById(@PathVariable String id){
+        if (contextOwnerServiceImpl.removeById(id)){
+            return Result.success();
+        }else {
+            return Result.fail();
+        }
+
+    }
 }

@@ -16,6 +16,6 @@ import java.util.List;
 public interface ContextOwnerService extends IService<ContextOwnerEntity> {
 
   List<ContextOwnerEntity> getContextOwnerByUserId( String userId);
-
+  List<ContextOwnerEntity> getAllContextOwner();
 
 }

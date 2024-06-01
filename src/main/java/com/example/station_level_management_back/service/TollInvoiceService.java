@@ -3,6 +3,8 @@ package com.example.station_level_management_back.service;
 import com.example.station_level_management_back.entity.TollInvoiceEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface TollInvoiceService extends IService<TollInvoiceEntity> {
 
+
+    List<TollInvoiceEntity> getAllTollInvoice();
 }

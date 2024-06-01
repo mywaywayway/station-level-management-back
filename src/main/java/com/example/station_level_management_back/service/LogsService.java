@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2024-04-17 21:32:21
  */
 public interface LogsService extends IService<LogsEntity> {
-
+    void deleteLogsByYearAndMonth(int year, int month);
 }

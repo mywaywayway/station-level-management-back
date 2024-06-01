@@ -3,6 +3,8 @@ package com.example.station_level_management_back.service;
 import com.example.station_level_management_back.entity.QuotaTicketEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface QuotaTicketService extends IService<QuotaTicketEntity> {
 
+    List<QuotaTicketEntity> getAllQuotaticket();
 }

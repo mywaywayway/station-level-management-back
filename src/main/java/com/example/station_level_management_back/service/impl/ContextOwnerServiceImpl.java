@@ -34,6 +34,11 @@ public class ContextOwnerServiceImpl extends ServiceImpl<ContextOwnerMapper, Con
         return contextOwnerMapper.selectList(Wrappers.<ContextOwnerEntity>lambdaQuery().eq(ContextOwnerEntity::getUserId,userId));
     }
 
+    @Override
+    public  List<ContextOwnerEntity>getAllContextOwner(){
+        return contextOwnerMapper.selectList(null);
+    }
+
 
 
 }
