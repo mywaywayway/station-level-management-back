@@ -7,10 +7,12 @@ import com.example.station_level_management_back.entity.TollInvoiceEntity;
 import com.example.station_level_management_back.service.impl.QuotaTicketServiceImpl;
 import com.example.station_level_management_back.service.impl.TicketServiceImpl;
 import com.example.station_level_management_back.service.impl.TollInvoiceServiceImpl;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
@@ -42,6 +44,42 @@ public class TicketController {
     public  void  setQuotaTicketServiceImpl(QuotaTicketServiceImpl quotaTicketServiceImpl){
         this.quotaTicketServiceImpl=quotaTicketServiceImpl;
    }
+
+   @GetMapping("/test")
+   public void test(){
+
+           for (int year = 2023; year <= 2024; year++) {
+               for (int month = 1; month <= 12; month++) {
+                   for (int i = 0; i < 2; i++) { // Insert 2 records per month
+                       LocalDateTime entranceTime = LocalDateTime.of(year, month, 1, 8, 0);
+                       LocalDateTime exitTime = entranceTime.plusHours(2);
+                       LocalDateTime payTime = exitTime.plusMinutes(10);
+
+                       TicketEntity ticket = new TicketEntity();
+                       ticket.setTicketId(UUID.randomUUID().toString()); // Set the ticketId as a new UUID
+                       ticket.setPlateNumber("Plate" + month + "-" + i);
+                       ticket.setEntranceStation("Station" + month);
+                       ticket.setExitStation("Station" + ((month % 12) + 1));
+                       ticket.setEntranceTime(entranceTime);
+                       ticket.setExitTime(exitTime);
+                       ticket.setAmount(new BigDecimal("100.00"));
+                       ticket.setPaymentStatus("已支付");
+                       ticket.setPayTime(payTime);
+
+                       ticketServiceImpl.save(ticket);
+                   }
+               }
+           }
+       }
+
+    @GetMapping("/getTicketNumberByYear/{Year}")
+    public Result<?> getTicketNumberByYear(@PathVariable Integer Year){
+        return Result.success(ticketServiceImpl.getTicketNumberByYear(Year));
+    }
+    @GetMapping("/getTicketMoneyByYear/{year}")
+    public Result<?> getTicketMoneyByYear(@PathVariable Integer year){
+        return Result.success(ticketServiceImpl.getTicketMoneyByYear(year));
+    }
 
     @PostMapping("/getAllTicket")
     public Result<?> getAllTicket(){

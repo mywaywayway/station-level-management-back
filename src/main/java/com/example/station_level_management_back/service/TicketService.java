@@ -4,6 +4,7 @@ import com.example.station_level_management_back.entity.TicketEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -16,4 +17,9 @@ import java.util.List;
 public interface TicketService extends IService<TicketEntity> {
 
       List<TicketEntity> getAllTicket();
+
+      List<Map<Object, Object>> getTicketNumberByYear(Integer Year);
+
+
+      List<Map<Object, Object>> getTicketMoneyByYear(int year);
 }
